@@ -1,0 +1,48 @@
+{
+  "name": "captionney",
+  "productName": "Captionney",
+  "version": "0.1.0",
+  "description": "Arabic captions. Your style. Your story.",
+  "main": "dist/main/main.js",
+  "author": "Captionney contributors",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build:renderer": "vite build",
+    "build": "tsc -p tsconfig.main.json && vite build",
+    "test": "vitest run",
+    "start": "npm run build && electron .",
+    "dist": "npm run build && electron-builder --win nsis --x64",
+    "dist:dir": "npm run build && electron-builder --win dir --x64"
+  },
+  "dependencies": {
+    "lucide-react": "0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8",
+    "typescript": "5.7.2",
+    "vite": "6.0.5",
+    "vitest": "2.1.8"
+  },
+  "build": {
+    "appId": "com.captionney.desktop",
+    "productName": "Captionney",
+    "directories": { "output": "release", "buildResources": "assets" },
+    "files": ["dist/**/*", "package.json"],
+    "asar": true,
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
